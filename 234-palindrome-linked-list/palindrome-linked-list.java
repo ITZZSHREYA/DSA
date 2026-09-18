@@ -9,43 +9,42 @@
  * }
  */
 class Solution {
+    public ListNode reverse(ListNode middle)
+    {
+        ListNode temp=middle;
+        ListNode prev=null;
+
+        while(temp!=null)
+        {
+            ListNode front=temp.next;
+            temp.next=prev;
+            prev=temp;
+            temp=front;
+        }
+        return prev;
+    }
     public boolean isPalindrome(ListNode head) {
 
-        int count = 0;
-        ListNode temp = head;
-        while (temp != null) {
-            temp = temp.next;
-            count++;
-
-        }
-        int[] arr = new int[count];
-        temp = head;
-        int x = 0;
-        while (temp != null && x < count) {
-            arr[x] = temp.val;
-            //System.out.println(arr[i]);
-            temp = temp.next;
-            x++;
-        }
-
         
-        int[] arr2 = new int[count];
-        x = 0;
-        int y=count-1;
+        ListNode slow=head,fast=head;
 
-       
-            while (x < count && y>=0) {
-                arr2[x] = arr[y];
-                x++;
-                y--;
-            }
-        int z=0;
-        for(int i=0;i<count;i++)
+        while(fast!=null && fast.next!=null)
         {
-            if(arr2[i]==arr[z])
+            slow=slow.next;
+            fast=fast.next.next;
+            
+        }
+        ListNode middle=slow;
+
+        ListNode secrev=reverse(middle);
+        ListNode temp2=head;
+        
+        while(temp2!=middle)
+        {
+            if(temp2.val==secrev.val)
             {
-                z++;
-                continue;
+                temp2=temp2.next;
+                secrev=secrev.next;
             }
             else
             {
@@ -53,8 +52,8 @@ class Solution {
             }
         }
         return true;
-        
-    
+
+
 
     }
 }
