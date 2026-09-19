@@ -4,7 +4,7 @@ class Solution {
         for(int i=0;i<nums.length;i++)
         {
             
-            if(nums[i]<10)
+            if(nums[i]<10 && nums[i]>0)
             {
                 sum+=nums[i];
             }
@@ -17,14 +17,11 @@ class Solution {
         System.out.println(sum);
          System.out.println(sum2);
 
-        if(sum<sum2)
+        if(sum<sum2 || sum2<sum)
         {
             return true;
         }
-        else if(sum2<sum)
-        {
-            return true;
-        }
+        
         else
         {
             return false;
